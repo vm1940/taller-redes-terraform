@@ -1,0 +1,13 @@
+name: Terraform
+on: [push]
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    env:
+      ARM_SUBSCRIPTION_ID: "00000000-0000-0000-0000-000000000000"
+      TF_VAR_admin_password: "dummy"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform validate
